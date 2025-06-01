@@ -1,9 +1,10 @@
-pandas
+pandas>=1.5.0
 numpy
-matplotlib
-seaborn
-scikit-learn
-jupyter
-nltk
+matplotlib>=3.5.0
+seaborn>=0.12.0
+scikit-learn>=1.0.0
+jupyter>=1.0.0
+nltk>=3.8.0
 yfinance
 ta
+notebook>=6.0.0
