@@ -81,21 +81,21 @@ def analyze_publication_dates(df, date_col='date'):
     Analyze distribution of articles over time.
     Returns sorted count of articles per date.
     """
-    df[date_col] = pd.to_datetime(df[date_col])
+    df[date_col] = pd.to_datetime(df[date_col], format='%Y-%m-%d %H:%M:%S', errors='coerce')
     return df.groupby(df[date_col].dt.date).size().sort_index()
 
 def publication_time_distribution(df, date_col='date'):
     """
     Analyzes the distribution of publication times throughout the day.
     """
-    df[date_col] = pd.to_datetime(df[date_col])
+    df[date_col] = pd.to_datetime(df[date_col], format='%Y-%m-%d %H:%M:%S', errors='coerce')
     return df[date_col].dt.hour.value_counts().sort_index()
 
 def analyze_weekly_pattern(df, date_col='date'):
     """
     Analyzes the distribution of articles by day of the week.
     """
-    df[date_col] = pd.to_datetime(df[date_col])
+    df[date_col] = pd.to_datetime(df[date_col], format='%Y-%m-%d %H:%M:%S', errors='coerce')
     return df.groupby(df[date_col].dt.day_name()).size()
 
 # --- Publisher Analysis Functions ---
@@ -118,7 +118,7 @@ def analyze_publisher_activity_by_hour(df, date_col='date', publisher_col='publi
     """
     Analyzes publisher activity patterns throughout the day.
     """
-    df[date_col] = pd.to_datetime(df[date_col])
+    df[date_col] = pd.to_datetime(df[date_col], format='%Y-%m-%d %H:%M:%S', errors='coerce')
     hourly_stats = df.groupby(df[date_col].dt.hour).agg({
         publisher_col: ['count', 'nunique']
     })

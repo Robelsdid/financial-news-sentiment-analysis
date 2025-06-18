@@ -1,5 +1,6 @@
 import sys
 import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from pathlib import Path
 import time
 import pandas as pd
@@ -31,12 +32,14 @@ def time_operation(name, func):
     return result
 
 def main():
+    os.makedirs('../data', exist_ok=True)
+
     # Load only needed columns to save memory
     needed_columns = ['date', 'publisher', 'headline']
     
     print("Loading data...")
     start = time.time()
-    df = pd.read_csv('../data/raw_analyst_ratings.csv', usecols=needed_columns)
+    df = pd.read_csv('data/raw_analyst_ratings.csv', usecols=needed_columns)
     end = time.time()
     print(f"✓ Data loaded in {end - start:.2f} seconds")
     print(f"✓ Memory usage: {df.memory_usage().sum() / 1024 / 1024:.2f} MB")
